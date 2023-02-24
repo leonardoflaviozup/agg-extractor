@@ -16,12 +16,14 @@ try {
         descricao_da_agregacao: etl.rule.description,
         variavel_da_agregacao:
           'rvars.agg.' + etl.rvar_object + '.' + etl.rvar_variable,
-        codigo: JSON.stringify(etl.rule.code),
       };
+      data.codigo = etl.rule.code
+        ? JSON.stringify(etl.rule.code)
+        : JSON.stringify(etl.rule);
       allData.push(data);
     });
   });
-  
+
   json2csv(allData, (error, csv) => {
     if (error) {
       throw error;
